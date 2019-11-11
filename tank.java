@@ -1,4 +1,4 @@
-class tank extends sprite {
+public class tank extends sprite {
 	boolean attacker;
 	boolean healer;
 	boolean wellarmor;
