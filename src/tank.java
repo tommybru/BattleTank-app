@@ -1,3 +1,8 @@
+// BattleTank
+// tank.java
+//
+// Tommy Bruzzese
+
 public class tank extends sprite {
 	boolean attacker;
 	boolean healer;
@@ -48,6 +53,9 @@ public class tank extends sprite {
 
 	}
 
+  /* goes through the attacking process, checking against the opponent tank's Armor and
+  the attacking tank's Power, and then inflicting the necessary damage
+  */
 	static boolean actuallyAttack(int attackTotal, tank attackingTank, tank defendingTank, boolean p1turn, String p1name, String p2name) {
 		sleep(time = 1500);
 		if(p1turn) {
@@ -96,6 +104,9 @@ public class tank extends sprite {
 		return true;
 	}
 
+  /* goes through the defending process, updating the health of the defending tank
+  if there is adequate Staff.
+  */
 	public void actuallyDefend(tank defendingTank, int healTotal) {
 		sleep(time = 1000);
 		System.out.println(" ");
@@ -118,6 +129,9 @@ public class tank extends sprite {
 		}
 	}
 
+  /* subtracts the appropriate Staff amount from the attacking tank and sets up dialog
+  for the Staff/Health bonuses for the rest of the tank fleet
+  */
 	public void redoAttackingStaff(int diceRolled, tank attackingTank, boolean p1turn, String p1name, String p2name) {
 		sleep(time = 2500);
 		if(p1turn) {
@@ -151,6 +165,9 @@ public class tank extends sprite {
 
 	}
 
+  /* subtracts the appropriate Staff amount from the defending tank and sets up dialog
+  for the new attributes of the tank the just healed
+  */
 	public void redoDefendingStaff(int diceRolled, tank defendingTank, boolean p1turn, String p1name, String p2name) {
 		sleep(time = 2500);
 		if(p1turn) {

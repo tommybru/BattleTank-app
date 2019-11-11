@@ -1,5 +1,8 @@
-
-
+// BattleTank
+// sprite.java
+//
+// Tommy Bruzzese
+//
 
 public class sprite {
 	int power;
@@ -8,7 +11,7 @@ public class sprite {
 	int health;
 	int staff;
 
-	public	sprite()	{
+	public sprite() {
 		power = 10;
 		resilience = 10;
 		armor = 20;
@@ -41,26 +44,17 @@ public class sprite {
 		int[]	results;
 		results = new	int[howMany];
 		for(int i=0; i<howMany; i++) {
-			results[i] = rollOneDie(numSides, 1);
+      results[i] = rollOneDie(numSides, 1);
 		}
  		return results;
 	}
 
-	public boolean	 isDead() {
+	public boolean isDead() {
 		if(health<=0) {
-			return true;
+      return true;
 		}
 		else {
-			return false;
-		}
-	}
-
-	public boolean canAttack(sprite other) {
-		if(health>other.health) {
-			return true;
-		}
-		else {
-			return false;
+      return false;
 		}
 	}
 }

@@ -1,3 +1,14 @@
+// BattleTank
+// game.java
+//
+// Tommy Bruzzese
+//
+// BattleTank is an attacking/defending tank game where each player uses their
+// unique fleet of tanks to try and defeat their opponent. With the different
+// tank types, each having a different Armor, Resilience, Health, Staff, and Power,
+// BattleTank is as much a game of strategy as it is a game of luck.
+
+
 import java.util.Scanner;
 
 public class game {
@@ -86,6 +97,9 @@ public class game {
 
 	}
 
+  /* welcome introduces players to the game by having them input their player names
+  and learn about the tank types they can choose from
+  */
 	public static void welcome() {
 		sleep(time = 200);
 		Scanner theInput = new Scanner(System.in);
@@ -141,6 +155,10 @@ public class game {
 		}
 	}
 
+  /* from the tank types displayed in welcome(), picking
+  alternates between the 2 players until they have each picked
+  3 different tanks to joint their fleet
+  */
 	public static void picking() {
 		Scanner theInput = new Scanner(System.in);
 		System.out.println(" ");
@@ -210,6 +228,11 @@ public class game {
 		}
 	}
 
+  /* runs through a full attacking round (i.e., both players attack).
+  Asks each player if they want to attack, using which tank, and then attacks
+  a random alive tank from the opponent accordingly. Updates all the necessary
+  attributes of each tank involved in the fight.
+  */
 	public static void attack() {
 		Scanner theInput = new Scanner(System.in);
 		System.out.println(" ");
@@ -229,14 +252,14 @@ public class game {
 			sleep(time = 1);
 			System.out.println(p1name +", would you like to attack? Yes or No");
 			answer = theInput.nextLine();
-			if(answer.equals("Yes") || answer.equals("yes")) {
+			if(answer.equals("Yes") || answer.equals("yes") || answer.equals("y")) {
 				attacked = true;
 				System.out.println("Which tank would you like to use to attack?");
 				for(int i=0;i<3;i++) {
 					System.out.println(" ");
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
-					if(p1tanks[i].health>0) {
+					if(!p1tanks[i].isDead()) {
 						sleep(time=5);
 						System.err.println(p1tanks[i].type);
 						sleep(time=100);
@@ -303,7 +326,7 @@ public class game {
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
 					sleep(time=5);
-					if(p1tanks[i].health>0) {
+					if(!p1tanks[i].isDead()) {
 						System.err.println(p1tanks[i].type);
 						sleep(time=100);
 						if(i!=(answerInt-1)) {
@@ -330,7 +353,7 @@ public class game {
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
 					sleep(time=5);
-					if(p1tanks[i].health>0) {
+					if(!p1tanks[i].isDead()) {
 						System.err.println(p1tanks[i].type);
 						sleep(time=100);
 						p1tanks[i].staff = p1tanks[i].staff + 2;
@@ -350,7 +373,7 @@ public class game {
 			sleep(time = 1);
 			System.out.println(p2name +", would you like to attack? Yes or No");
 			answer = theInput.nextLine();
-			if(answer.equals("Yes") || answer.equals("yes")) {
+			if(answer.equals("Yes") || answer.equals("yes") || answer.equals("y")) {
 				attacked = true;
 				System.out.println("Which tank would you like to use to attack?");
 				for(int i=0;i<3;i++) {
@@ -358,7 +381,7 @@ public class game {
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
 					sleep(time=5);
-					if(p2tanks[i].health>0) {
+					if(!p2tanks[i].isDead()) {
 						System.err.println(p2tanks[i].type);
 						sleep(time=100);
 						p2tanks[i].printAllInfo();
@@ -423,7 +446,7 @@ public class game {
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
 					sleep(time=5);
-					if(p2tanks[i].health>0) {
+					if(!p2tanks[i].isDead()) {
 						System.err.println(p2tanks[i].type);
 						sleep(time=100);
 						if(i!=(answerInt-1)) {
@@ -450,7 +473,7 @@ public class game {
 					sleep(time = 700);
 					System.err.println("Tank #"+(i+1));
 					sleep(time=5);
-					if(p2tanks[i].health>0) {
+					if(!p2tanks[i].isDead()) {
 						System.err.println(p2tanks[i].type);
 						sleep(time=100);
 						p2tanks[i].staff = p2tanks[i].staff + 2;
@@ -467,6 +490,10 @@ public class game {
 
 	}
 
+  /* runs through the setup for a defense from the tank that was just damaged.
+  The amount of Health that a player can give back to their damaged tank is
+  dependent on that tank's Resilience and remaining Staff.
+  */
 	public static void defend() {
 		Scanner theInput = new Scanner(System.in);
 		System.out.println(" ");
@@ -500,7 +527,7 @@ public class game {
 
 		System.out.println("Your tank has a resilience of " + defendingTank.resilience + ", would you like to recover it? Yes or No.");
 		answer = theInput.nextLine();
-		if(answer.equals("Yes") || answer.equals("yes")) {
+		if(answer.equals("Yes") || answer.equals("yes") || answer.equals("y")) {
 			System.out.println("How many dice would you like to roll? (Maximum is " + defendingTank.resilience + ") (The staff of the tank will be reduced by how many dice you roll)");
 			diceRolled = Integer.parseInt(theInput.nextLine());
 			while( (diceRolled <= 0) || (diceRolled > defendingTank.resilience) || diceRolled>defendingTank.staff) {
@@ -530,6 +557,8 @@ public class game {
 			sleep(time = 400);
 		}
 	}
+
+  /*Checking to see if either player 1 or player 2 has lost */
 
 	public static boolean checkP1() {
 		if( p1tanks[0].isDead() && p1tanks[1].isDead() && p1tanks[2].isDead() ) {
