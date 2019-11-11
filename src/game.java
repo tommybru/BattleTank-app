@@ -103,7 +103,7 @@ public class game {
 	public static void welcome() {
 		sleep(time = 200);
 		Scanner theInput = new Scanner(System.in);
-		System.err.print("WELCOME TO RISK");
+		System.err.print("WELCOME TO BATTLETANK");
 		for(int i =0;i<6;i++) {
 			try {
 				Thread.sleep(250);
