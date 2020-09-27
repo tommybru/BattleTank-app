@@ -1,6 +1,5 @@
-# BattleTank - Java
+# BattleTank - built with Java
 
-## Final Demo
 BattleTank has become one of my favorite projects because of the way it brings life to an ordinary console.
 
 ![game gif](images/game.gif)
