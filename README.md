@@ -1,6 +1,6 @@
 # BattleTank - built with Java
 
-BattleTank has become one of my favorite projects because of the way it brings life to an ordinary console.
+BattleTank has become one of my favorite projects because of the way it brings life to an ordinary Terminal.
 
 ![game gif](images/game.gif)
 
